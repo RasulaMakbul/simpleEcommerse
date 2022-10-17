@@ -38,6 +38,7 @@ class SizeshapeController extends Controller
      */
     public function store(SizeshapeRequest $request)
     {
+        #dd($request);
         Sizeshape::create([
             'title' => $request->title,
         ]);

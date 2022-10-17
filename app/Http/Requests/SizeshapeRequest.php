@@ -24,7 +24,7 @@ class SizeshapeRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|min:2|max:10|unique:sizeshape,title,' . $this->id
+            'title' => 'required|min:2|max:10|unique:sizeshapes,title,' . $this->id
         ];
     }
 }

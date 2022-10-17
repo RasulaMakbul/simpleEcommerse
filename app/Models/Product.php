@@ -21,4 +21,8 @@ class Product extends Model
     {
         return $this->belongsToMany(Color::class);
     }
+    public function sizeshapes()
+    {
+        return $this->belongsToMany(Sizeshape::class);
+    }
 }

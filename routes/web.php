@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SizeshapeController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -36,3 +37,9 @@ Route::get('/color/trash', [ColorController::class, 'trash'])->name('color.trash
 Route::get('/color/{id}/restore', [ColorController::class, 'restore'])->name('color.restore');
 Route::delete('/color/{id}/delete', [ColorController::class, 'delete'])->name('color.delete');
 Route::resource('color', ColorController::class);
+
+
+Route::get('/sizeshape/trash', [SizeshapeController::class, 'trash'])->name('sizeshape.trash');
+Route::get('/sizeshape/{id}/restore', [SizeshapeController::class, 'restore'])->name('sizeshape.restore');
+Route::delete('/sizeshape/{id}/delete', [SizeshapeController::class, 'delete'])->name('sizeshape.delete');
+Route::resource('sizeshape', SizeshapeController::class);

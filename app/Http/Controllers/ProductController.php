@@ -6,6 +6,7 @@ use App\Http\Requests\ProductRequest;
 use App\Models\Category;
 use App\Models\Color;
 use App\Models\Product;
+use App\Models\Sizeshape;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Database\QueryException;
@@ -20,6 +21,7 @@ class ProductController extends Controller
     public function index()
     {
         #orderBy('id', 'desc')
+        #dd(Product::all());
         $products = Product::latest()->paginate(15);
         return view('products.productList', compact('products'));
     }
@@ -33,7 +35,8 @@ class ProductController extends Controller
     {
         $categories = Category::pluck('categoryName', 'id')->toArray();
         $colors = Color::pluck('title', 'id')->toArray();
-        return view('products.productAdd', compact('categories', 'colors'));
+        $sizeshapes = Sizeshape::pluck('title', 'id')->toArray();
+        return view('products.productAdd', compact('categories', 'colors', 'sizeshapes'));
     }
 
     /**
@@ -44,15 +47,19 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
+        $fileName = $this->uploadImage($request->File('image'));
+
         $requestData = ([
             'productName' => $request->productName,
             'category_id' => $request->category_id,
             'unitPrice' => $request->unitPrice,
             'stock' => $request->stock,
             'description' => $request->description,
+            'image' => $fileName
         ]);
         $product = Product::create($requestData);
         $product->colors()->attach($request->colors);
+        $product->sizeshapes()->attach($request->sizeshapes);
 
 
         return redirect()->route('product.index');
@@ -81,10 +88,12 @@ class ProductController extends Controller
 
         $categories = Category::pluck('categoryName', 'id')->toArray();
         $colors = Color::pluck('title', 'id')->toArray();
+        $sizeshapes = Sizeshape::pluck('title', 'id')->toArray();
 
         $selectedColors = $product->colors()->pluck('id')->toArray();
+        $selectedsizeshapes = $product->sizeshapes()->pluck('id')->toArray();
 
-        return view('Products.productEdit', compact('product', 'categories', 'colors', 'selectedColors'));
+        return view('Products.productEdit', compact('product', 'categories', 'colors', 'selectedColors', 'sizeshapes', 'selectedsizeshapes'));
     }
 
     /**
@@ -105,6 +114,7 @@ class ProductController extends Controller
         ];
         $product->update($requestData);
         $product->colors()->sync($request->colors);
+        $product->sizeshapes()->sync($request->sizeshapes);
         return redirect()->route('product.index');
     }
 
@@ -148,8 +158,9 @@ class ProductController extends Controller
     {
         try {
             $products = Product::onlyTrashed()->find($id);
-            $products->forceDelete();
             $products->colors()->detach();
+            $products->sizeshapes()->detach();
+            $products->forceDelete();
 
             return redirect()
                 ->route('product.trash')
@@ -157,5 +168,15 @@ class ProductController extends Controller
         } catch (QueryException $e) {
             return redirect()->back()->withErrors($e->getMessage());
         }
+    }
+
+    public function uploadImage($image)
+    {
+        $originalName = $image->getClientOriginalName();
+        $fileName = date('Y-m-d') . time() . $originalName;
+        $image->move(storage_path('/app/public/products'), $fileName);
+
+        #Image::make($image)->resize(200, 200)->save(storage_path() . '/app/public/categories' . $fileName);
+        return $fileName;
     }
 }

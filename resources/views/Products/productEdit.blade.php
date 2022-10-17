@@ -17,7 +17,16 @@
                 <x-forms.dropdowns name="category_id" title="Category" id="category" :dropItems="$categories" :setItem="old('category_id',$product->category_id)" />
 
                 <x-forms.input name="brand" class="mt-2" title="Brand" type="text" id="brand" :value="old('brand')" />
-                <x-forms.checkbox name="colors[]" id="color" :checklist="$colors" label="Colors" :checkedItems="$selectedColors" />
+
+                <div class=" d-flex">
+                    <div class="col-6">
+                        <x-forms.checkbox name="colors[]" id="color" :checklist="$colors" label="Colors" :checkedItems="$selectedColors" />
+                    </div>
+                    <div class="col-6">
+
+                        <x-forms.checkbox name="sizeshapes[]" id="size" :checklist="$sizeshapes" label="Sizes" :checkedItems="$selectedsizeshapes" />
+                    </div>
+                </div>
                 <div class=" d-flex">
                     <div class="col-6">
                         <x-forms.input name="unitPrice" class="mt-2" title="Unit Price" type="text" id="unitPrice" :value="old('unitPrice',$product->unitPrice)" />

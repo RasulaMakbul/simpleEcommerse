@@ -7,7 +7,8 @@
             <h1 class="h2">{{__('Products')}}</h1>
             <div class="btn-toolbar mb-2 mb-md-0">
                 <div class="btn-group me-2">
-                    <a type="button" href="{{route('color.index')}}" class="btn btn-sm btn-outline-secondary"><i class="fa-regular fa-file-pdf"></i> {{__('Colors')}}</a>
+                    <a type="button" href="{{route('sizeshape.index')}}" class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-person-arrow-up-from-line"></i> {{__('Sizes')}}</a>
+                    <a type="button" href="{{route('color.index')}}" class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-palette"></i> {{__('Colors')}}</a>
                     <a type="button" href="{{route('product.pdf')}}" class="btn btn-sm btn-outline-secondary"><i class="fa-regular fa-file-pdf"></i> {{__('pdf')}}</a>
                     <button type="button" class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-table"></i> {{__('Excel')}}</button>
                     <a type="button" href="{{route('product.trash')}}" class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-trash fs-5"></i> {{__('Trash')}}</a>
@@ -28,8 +29,6 @@
                         <th scope="col">{{__('Image')}}</th>
                         <th scope="col">{{__('Product Name')}}</th>
                         <th scope="col">{{__('Category')}}</th>
-                        <th scope="col">{{__('Color')}}</th>
-                        <th scope="col">{{__('Brand')}}</th>
                         <th scope="col">{{__('Unit Price')}}</th>
                         <th scope="col">{{__('Stock')}}</th>
                         <th scope="col">{{__('Unit')}}</th>
@@ -43,8 +42,6 @@
                         <td><img src="{{asset('storage/products/'.$product->image)}}" alt=""></td>
                         <td>{{ $product->productName }}</td>
                         <td>{{ $product->category->categoryName }}</td>
-                        <td>{{ $product->color }}</td>
-                        <td>{{ $product->brand }}</td>
                         <td>{{ $product->unitPrice }}</td>
                         <td>{{ $product->stock }}</td>
                         <td>{{ $product->unit }}</td>

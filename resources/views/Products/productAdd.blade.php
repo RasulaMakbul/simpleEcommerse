@@ -11,10 +11,24 @@
 
 
                 <x-forms.input name="productName" class="mt-2" title="Product Name" type="text" id="productName" :value="old('productName')" />
+                <hr>
                 <x-forms.dropdowns name="category_id" title="Category" id="category" :dropItems="$categories" required />
 
+                <hr>
+
                 <x-forms.input name="brand" class="mt-2" title="Brand" type="text" id="brand" :value="old('brand')" />
-                <x-forms.checkbox name="colors[]" id="color" :checklist="$colors" label="Colors" />
+
+                <hr>
+
+                <div class="d-flex">
+                    <div class="col-6">
+                        <x-forms.checkbox name="colors[]" id="color" :checklist="$colors" label="Colors" />
+                    </div>
+                    <div class="col-6">
+                        <x-forms.checkbox name="sizeshapes[]" id="size" :checklist="$sizeshapes" label="Sizes" />
+                    </div>
+                </div>
+                <hr>
                 <div class="d-flex">
                     <div class="col-6">
                         <x-forms.input name="unitPrice" class="mt-2" title="Unit Price" type="text" id="unitPrice" :value="old('unitPrice')" />
@@ -23,6 +37,8 @@
                         <x-forms.input name="stock" class="mt-2" title="Stock" type="text" id="stock" :value="old('stock')" />
                     </div>
                 </div>
+
+                <hr>
 
 
                 <x-forms.input name=" description" class="mt-2" title="Description" type="text" id="description" :value="old('description')" />

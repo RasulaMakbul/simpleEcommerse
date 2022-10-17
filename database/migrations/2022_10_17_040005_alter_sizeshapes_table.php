@@ -13,22 +13,20 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('colors', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->string('colorCode');
+        Schema::table('sizeshapes', function (Blueprint $table) {
             $table->softDeletes();
-            $table->timestamps();
         });
     }
 
-    /**php artisan make:migration alter_categories_table –table=”tableName”
+    /**
      * Reverse the migrations.
      *
      * @return void
      */
     public function down()
     {
-        Schema::dropIfExists('colors');
+        Schema::table('sizeshapes', function (Blueprint $table) {
+            //
+        });
     }
 };
