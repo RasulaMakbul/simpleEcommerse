@@ -70,8 +70,14 @@
                                         <p> {{$color->title}}</p>
                                         @endif
                                         @endforeach --}}
-                                        @foreach($product->colors as $color)
-                                        <button class="btn" style="background-color:{{$color->colorCode}} ;">{{ $color->title }}</button>
+                                        @foreach($product->colors as $key=>$color)
+                                        <span class="col border px-2 m-2" style="background-color:{{$color->colorCode}} ;">
+                                            <input type="checkbox" id="{{ $key.$color->id}}" style="accent-color:{{$color->colorCode}} ;">
+                                        </span>
+                                        <!-- <input type="checkbox" id="{{ $key.$color->id}}" style="accent-color:{{$color->colorCode}} ;">
+                                        <label class="form-check-label" for="{{ $key.$color->id }}">
+                                            <span class="col border px-2" style="background-color:{{$color->colorCode}} ;"></span>
+                                        </label> -->
                                         @endforeach
                                     </div>
                                 </div>
@@ -86,7 +92,9 @@
                                         @endif
                                         @endforeach --}}
                                         @foreach($product->sizeshapes as $size)
-                                        <button class="btn btn-outline-success">{{ $size->title }}</button>
+                                        <span class="col px-2 m-2">
+                                            <input type="checkbox" id="{{ $key.$size->id}}"> <label for="{{ $key.$size->id}}">{{$size->title}}</label>
+                                        </span>
                                         @endforeach
                                     </div>
                                 </div>

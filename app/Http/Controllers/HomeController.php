@@ -33,8 +33,13 @@ class HomeController extends Controller
     public function productDetails(Product $product)
     {
         #dd($product);
+        $colors = Color::pluck('title', 'id')->toArray();
+        $sizeshapes = Sizeshape::pluck('title', 'id')->toArray();
+
+        $selectedColors = $product->colors()->pluck('id')->toArray();
+        $selectedsizeshapes = $product->sizeshapes()->pluck('id')->toArray();
 
 
-        return view('audience.product', compact('product'));
+        return view('audience.product', compact('product', 'colors', 'sizeshapes', 'selectedColors', 'selectedsizeshapes'));
     }
 }
