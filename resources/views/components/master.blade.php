@@ -59,6 +59,21 @@
                                                 this.closest('form').submit();">Log Out</a>
                 </form>
 
+                <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle show" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-bell"></i>
+                        </a>
+                        <ul class="dropdown-menu show" aria-labelledby="navbarDropdown" data-bs-popper="none">
+                            @foreach (Auth::user()->unreadNotifications as $notification)
+                            <li><a class="dropdown-item" href="{{ $notification->data['action_url'] }}">{{ $notification->data['message'] }}</a></li>
+                            @endforeach
+                        </ul>
+                    </li>
+                </ul>
+
+
+
             </div>
         </div>
 

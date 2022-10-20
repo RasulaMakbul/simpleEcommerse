@@ -25,4 +25,9 @@ class Product extends Model
     {
         return $this->belongsToMany(Sizeshape::class);
     }
+    public function comments()
+    {
+        #return $this->hasMany(Comment::class)->orderBy('id', 'desc');
+        return $this->morphMany(Comment::class, 'commentable');
+    }
 }

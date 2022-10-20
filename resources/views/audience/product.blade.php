@@ -1,6 +1,6 @@
 <x-audience.master>
     <x-slot:title>
-        {{__('Laravel Crud | Products')}}
+        {{__('Product | Laravel Crud')}}
     </x-slot:title>
     <div class="container ">
         <div class="justify-content-md-center pb-2">
@@ -10,8 +10,9 @@
                         <div class="card text-center">
                             <div class="card-body">
                                 <div class="mt3">
-                                    <h3>{{$product->productName}}</h3>
+
                                     <img height="250" src="{{ asset('storage/products/'.$product->image) }}" alt="{{ $product->productName }}" />
+                                    <h3 class="h2 pt-3">{{$product->productName}}</h3>
                                 </div>
                             </div>
                         </div>
@@ -74,10 +75,6 @@
                                         <span class="col border px-2 m-2" style="background-color:{{$color->colorCode}} ;">
                                             <input type="checkbox" id="{{ $key.$color->id}}" style="accent-color:{{$color->colorCode}} ;">
                                         </span>
-                                        <!-- <input type="checkbox" id="{{ $key.$color->id}}" style="accent-color:{{$color->colorCode}} ;">
-                                        <label class="form-check-label" for="{{ $key.$color->id }}">
-                                            <span class="col border px-2" style="background-color:{{$color->colorCode}} ;"></span>
-                                        </label> -->
                                         @endforeach
                                     </div>
                                 </div>
@@ -106,6 +103,49 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="container ">
+        <div class="justify-content-md-center pb-2">
+            <div class="main">
+                <div class="row">
+                    <div class="col-md-12 mt-1">
+                        <div class="card text-start px-5">
+                            <div class="card-body">
+                                <div class="mt3">
+                                    <h3>Comments</h3>
+                                    <hr>
+                                    <ul>
+                                        @foreach($product->comments as $comment)
+                                        <li>
+                                            <h5>{{ $comment->commentedBy->name}}<small><mark style="font-size: 10px ; color:#2b2b3b">{{ $comment->created_at->diffForHumans() }}</mark></small></h5>
+                                            <p>{{ $comment->body }}</p>
+                                            <hr>
+                                        </li>
+                                        @endforeach
+
+                                    </ul>
+                                </div>
+                                <div class="mt-3">
+                                    @auth
+                                    <form action="{{ route('products.comments.store',$product->id) }}" method="post">
+                                        @csrf
+                                        <x-audience.partials.textarea name="body" label="Your Valuable comment" />
+                                        <button class="btn btn-outline-primary" type="submit">Sumbit</button>
+                                    </form>
+                                    @else
+                                    <a href="{{route('login')}}" class="btn btn-success mx-3" type="submit">Login to comment</a>
+                                    @endauth
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ColorController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SizeshapeController;
@@ -18,12 +19,6 @@ Route::get('/products/{product}/product', [HomeController::class, 'productDetail
 Route::get('/caterories/{category}/products', [HomeController::class, 'productList'])->name('audience.products');
 
 
-// Route::get('/products/{product}', [WelcomeController::class, 'productDetails'])->name('frontend.products.show');
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
 require __DIR__ . '/auth.php';
 
 Route::middleware('auth')->group(function () {
@@ -31,6 +26,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     });
+
+    Route::post(
+        '/products/{product}/comments',
+        [CommentController::class, 'store']
+    )->name('products.comments.store');
 
     Route::get('category/pdf', [CategoryController::class, 'downloadPdf'])->name('category.pdf');
     Route::resource('category', CategoryController::class);

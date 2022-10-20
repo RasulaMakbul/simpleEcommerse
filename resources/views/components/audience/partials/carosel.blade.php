@@ -6,9 +6,9 @@
     </div>
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-                <rect width="100%" height="100%" fill="#777" />
-            </svg>
+            <img class="bd-placeholder-img" width="100%" height="100%" src="https://img.freepik.com/free-psd/horizontal-banner-template-black-friday-clearance_23-2148745446.jpg?w=2000" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+            <rect width="100%" height="100%" fill="#777" />
+
 
             <div class="container">
                 <div class="carousel-caption text-start">
@@ -19,9 +19,8 @@
             </div>
         </div>
         <div class="carousel-item">
-            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-                <rect width="100%" height="100%" fill="#777" />
-            </svg>
+            <img class="bd-placeholder-img" width="100%" height="100%" src="https://img.freepik.com/premium-vector/special-offer-sale-discount-banner_180786-46.jpg?w=2000" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+
 
             <div class="container">
                 <div class="carousel-caption">
@@ -32,9 +31,9 @@
             </div>
         </div>
         <div class="carousel-item">
-            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-                <rect width="100%" height="100%" fill="#777" />
-            </svg>
+            <img class="bd-placeholder-img" width="100%" height="100%" src="https://www.freevector.com/uploads/vector/preview/13415/Promotion-Banner.jpg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+            <rect width="100%" height="100%" fill="#777" />
+
 
             <div class="container">
                 <div class="carousel-caption text-end">
